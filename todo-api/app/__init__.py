@@ -1,4 +1,4 @@
-from flask import Flask 
+from flask import Flask, jsonify
 from app.database import db
 
 def create_app(): 
@@ -7,6 +7,11 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
+
+
+    @app.errorhandler(404)
+    def not_found(e): 
+        return jsonify({"message": "Recurso nao encontrado."}), 404
 
     with app.app_context(): 
         from app import models 

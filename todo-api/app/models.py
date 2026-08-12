@@ -5,11 +5,3 @@ class Task(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(300), nullable=True)
     done = db.Column(db.Boolean, default=False)
-
-    def to_dict(self): 
-        return { 
-            "id": self.id,
-            "title": self.title, 
-            "description": self.description, 
-            "done": self.done
-        }
